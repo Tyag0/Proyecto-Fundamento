@@ -9,6 +9,7 @@ class jugador():
 
 def tablero():
     pass
+    #En proceso...
 
 def turno(jugador):
     row = input(f"{jugador.nombre}, indica un número de columna o pulsa [S] para tentar a la suerte: ")
@@ -17,6 +18,7 @@ def turno(jugador):
         print(f"mmm...suerte con eso, se eligió aleatoriamente la columna {row} para tu ficha")
     else:
         row = int(row)
+    #En proceso...
 
 play = True
 try:
@@ -24,7 +26,7 @@ try:
 
         #INICIO DE PARTIDA#
         print(4*"*","CUATRO SEGUIDAS",4*"*")
-        for i in range(1,3,1):
+        for i in range(1,3):
             nombre = input(f"Por favor indique nombre de participante #{i}: ")
             if i==1:
                 ficha = input(f"{nombre}, por favor indica con qué ficha deseas jugar [X] o [O]: ")
@@ -36,7 +38,7 @@ try:
                     ficha = "X"
                 print(f"{nombre}, te toca jugar con la siguiente ficha: {ficha}")
                 jugador2 = jugador(nombre, ficha)
-        jugadores = [jugador1, jugador2]
+        jugadores = [jugador1, jugador2] #En proceso
         
         #SELECCION DE QUIEN EMPIEZA
         print("")
@@ -58,11 +60,11 @@ try:
             elif inicia==1:
                 turno(jugador2)
             for i in jugadores:
-                turno(i)
-            Win = True
+                turno(i) #En proceso...
+            Win = True #En proceso...
 
         continua = input("¿Desean volver a jugar? [Si] / [No]:")
         if continua == "No":
             play = False
 except:
-    pass
+    pass #En proceso...
