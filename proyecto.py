@@ -80,6 +80,7 @@ try:
 
         continua = input("¿Desean volver a jugar? [Si] / [No]:")
         if continua == "No":
+            print("¡Gracias por jugar!")
             play = False
 except:
     pass #En proceso...
