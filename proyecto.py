@@ -8,12 +8,28 @@ class jugador():
         self.ficha = ficha
 
 def tablero():
-    pass
+  print("")
+  print("+","+","+","+","+","+","+","+",sep="-")
+  print("|1|2|3|4|5|6|7|")
+  print("+","+","+","+","+","+","+","+",sep="-")
+  print("|","|", "|", "|", "|","|","|","|")
+  print("+","+","+","+","+","+","+","+",sep="-")
+  print("|","|", "|", "|", "|","|","|","|")
+  print("+","+","+","+","+","+","+","+",sep="-")
+  print("|","|", "|", "|", "|","|","|","|")
+  print("+","+","+","+","+","+","+","+",sep="-")
+  print("|","|", "|", "|", "|","|","|","|")
+  print("+","+","+","+","+","+","+","+",sep="-")
+  print("|","|", "|", "|", "|","|","|","|")
+  print("+","+","+","+","+","+","+","+",sep="-")
+  print("|","|", "|", "|", "|","|","|","|")
+  print("+","+","+","+","+","+","+","+",sep="-")
+  print("")
     #En proceso...
 
 def turno(jugador):
     row = input(f"{jugador.nombre}, indica un número de columna o pulsa [S] para tentar a la suerte: ")
-    if row=="S":
+    if row=="S" or row=="s":
         row = randint(1,7)
         print(f"mmm...suerte con eso, se eligió aleatoriamente la columna {row} para tu ficha")
     else:
@@ -45,7 +61,7 @@ try:
         inicia = randint(0,1)
         time.sleep(3)
         print("Lanzando una moneda al aire para determinar quién inicia la partida...")
-        time.sleep(5)
+        time.sleep(4)
         if inicia == 0:
             print(f"La partida la inicia {jugador1.nombre}")
         else:
@@ -53,7 +69,8 @@ try:
         
         #TABLERO INICIAL
         Win = False
-        #tablero()
+        time.sleep(2)
+        tablero()
         while not Win:
             if inicia==0:
                 turno(jugador1)
@@ -64,7 +81,8 @@ try:
             Win = True #En proceso...
 
         continua = input("¿Desean volver a jugar? [Si] / [No]:")
-        if continua == "No":
+        if continua == "No" or continua == "no":
+            print("¡Gracias por jugar!")
             play = False
 except:
     pass #En proceso...
