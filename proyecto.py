@@ -60,7 +60,7 @@ try:
         inicia = randint(0,1)
         time.sleep(3)
         print("Lanzando una moneda al aire para determinar quién inicia la partida...")
-        time.sleep(5)
+        time.sleep(4)
         if inicia == 0:
             print(f"La partida la inicia {jugador1.nombre}")
         else:
@@ -68,6 +68,7 @@ try:
         
         #TABLERO INICIAL
         Win = False
+        time.sleep(2)
         tablero()
         while not Win:
             if inicia==0:
