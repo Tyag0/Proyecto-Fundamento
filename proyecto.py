@@ -28,7 +28,7 @@ def tablero():
 
 def turno(jugador):
     row = input(f"{jugador.nombre}, indica un número de columna o pulsa [S] para tentar a la suerte: ")
-    if row=="S":
+    if row=="S" or row=="s":
         row = randint(1,7)
         print(f"mmm...suerte con eso, se eligió aleatoriamente la columna {row} para tu ficha")
     else:
