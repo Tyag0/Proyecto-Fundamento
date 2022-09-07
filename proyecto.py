@@ -81,7 +81,7 @@ try:
             Win = True #En proceso...
 
         continua = input("¿Desean volver a jugar? [Si] / [No]:")
-        if continua == "No":
+        if continua == "No" or continua == "no":
             print("¡Gracias por jugar!")
             play = False
 except:
