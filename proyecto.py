@@ -100,4 +100,4 @@ try:
             print("¡Gracias por jugar!")
             play = False
 except:
-    pass
+    pass #En proceso...
