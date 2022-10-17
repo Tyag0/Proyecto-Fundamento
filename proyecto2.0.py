@@ -1,15 +1,5 @@
+import time
 from random import randint
-
-#Se define la forma estándar del tablero
-table = [["|","1","2","3","4","5","6","7","|"],
-        ["+","-","-","-","-","-","-","-","+"],
-        ["|",".",".",".",".",".",".",".","|"],
-        ["|",".",".",".",".",".",".",".","|"],
-        ["|",".",".",".",".",".",".",".","|"],
-        ["|",".",".",".",".",".",".",".","|"],
-        ["|",".",".",".",".",".",".",".","|"],
-        ["|",".",".",".",".",".",".",".","|"],
-        ["+","-","-","-","-","-","-","-","+"]]
 
 #Se define las características de los jugadores
 class jugador():
@@ -48,6 +38,17 @@ def tablero():
 play = True
 try:
     while play:
+        #Se define la forma estándar del tablero
+        table = [["|","1","2","3","4","5","6","7","|"],
+        ["+","-","-","-","-","-","-","-","+"],
+        ["|",".",".",".",".",".",".",".","|"],
+        ["|",".",".",".",".",".",".",".","|"],
+        ["|",".",".",".",".",".",".",".","|"],
+        ["|",".",".",".",".",".",".",".","|"],
+        ["|",".",".",".",".",".",".",".","|"],
+        ["|",".",".",".",".",".",".",".","|"],
+        ["+","-","-","-","-","-","-","-","+"]]
+
 
         #INICIO DE PARTIDA#
         print(4*"*","CUATRO SEGUIDAS",4*"*")
@@ -57,7 +58,7 @@ try:
                 ficha = input(f"{nombre}, por favor indica con qué ficha deseas jugar [X] o [O]: ")
                 jugador1 = jugador(nombre, ficha)
             else:
-                if ficha=="X":
+                if ficha=="X" or ficha=="x":
                     ficha = "O"
                 else:
                     ficha = "X"
@@ -68,14 +69,17 @@ try:
         #SELECCION DE QUIEN EMPIEZA
         print("")
         inicia = randint(0,1)
+        time.sleep(1)
         print("Lanzando una moneda al aire para determinar quién inicia la partida...")
+        time.sleep(3)
         if inicia == 0:
             print(f"La partida la inicia {jugador1.nombre}")
         else:
             print(f"La partida la inicia {jugador2.nombre}")
         
-        #TABLERO INICIAL
+        #TABLERO INICIAL 
         Win = False
+        time.sleep(2)
         tablero()
         #Primera ronda de juego
         if inicia==0:
@@ -88,25 +92,13 @@ try:
         while not Win:
             for i in jugadores:
                 i.turno()
-                if table[2][1]!="." and table[2][1]!="." and table[2][2]!="." and table[2][3]!="." and table[2][4]!="." and table[2][5]!="." and table[2][6]!="." and table[2][7]!=".":
-                  Win=True
+                if table[2].count(".") == 0:
+                  Win = True
                   break
-
         #Pregunta para volver a jugar
-        if Win==True:
-          continua = input("¿Desean volver a jugar? [Si] / [No]:")
-          if continua == "Si" or continua == "si":
-            table = [["|","1","2","3","4","5","6","7","|"],
-        ["+","-","-","-","-","-","-","-","+"],
-        ["|",".",".",".",".",".",".",".","|"],
-        ["|",".",".",".",".",".",".",".","|"],
-        ["|",".",".",".",".",".",".",".","|"],
-        ["|",".",".",".",".",".",".",".","|"],
-        ["|",".",".",".",".",".",".",".","|"],
-        ["|",".",".",".",".",".",".",".","|"],
-        ["+","-","-","-","-","-","-","-","+"]]
-          elif continua == "No" or continua == "no":
-              print("¡Gracias por jugar!")
-              play = False
+        continua = input("¿Desean volver a jugar? [Si] / [No]:")
+        if continua == "No" or continua == "no":
+            print("¡Gracias por jugar!")
+            play = False
 except:
     pass #En proceso...
