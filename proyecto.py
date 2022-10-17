@@ -1,17 +1,6 @@
 import time
 from random import randint
 
-#Se define la forma estándar del tablero
-table = [["|","1","2","3","4","5","6","7","|"],
-        ["+","-","-","-","-","-","-","-","+"],
-        ["|",".",".",".",".",".",".",".","|"],
-        ["|",".",".",".",".",".",".",".","|"],
-        ["|",".",".",".",".",".",".",".","|"],
-        ["|",".",".",".",".",".",".",".","|"],
-        ["|",".",".",".",".",".",".",".","|"],
-        ["|",".",".",".",".",".",".",".","|"],
-        ["+","-","-","-","-","-","-","-","+"]]
-
 #Se define las características de los jugadores
 class jugador():
     def __init__(self, nombre, ficha):
@@ -49,6 +38,17 @@ def tablero():
 play = True
 try:
     while play:
+        #Se define la forma estándar del tablero
+        table = [["|","1","2","3","4","5","6","7","|"],
+        ["+","-","-","-","-","-","-","-","+"],
+        ["|",".",".",".",".",".",".",".","|"],
+        ["|",".",".",".",".",".",".",".","|"],
+        ["|",".",".",".",".",".",".",".","|"],
+        ["|",".",".",".",".",".",".",".","|"],
+        ["|",".",".",".",".",".",".",".","|"],
+        ["|",".",".",".",".",".",".",".","|"],
+        ["+","-","-","-","-","-","-","-","+"]]
+
 
         #INICIO DE PARTIDA#
         print(4*"*","CUATRO SEGUIDAS",4*"*")
@@ -58,7 +58,7 @@ try:
                 ficha = input(f"{nombre}, por favor indica con qué ficha deseas jugar [X] o [O]: ")
                 jugador1 = jugador(nombre, ficha)
             else:
-                if ficha=="X":
+                if ficha=="X" or ficha=="x":
                     ficha = "O"
                 else:
                     ficha = "X"
@@ -77,7 +77,7 @@ try:
         else:
             print(f"La partida la inicia {jugador2.nombre}")
         
-        #TABLERO INICIAL
+        #TABLERO INICIAL 
         Win = False
         time.sleep(2)
         tablero()
@@ -91,9 +91,11 @@ try:
         #Ciclo para los turnos
         while not Win:
             for i in jugadores:
+                if table[2].count(".") == 0:
+                    Win = True
                 i.turno()
-            Win = True
-
+                
+            
         #Pregunta para volver a jugar
         continua = input("¿Desean volver a jugar? [Si] / [No]:")
         if continua == "No" or continua == "no":
