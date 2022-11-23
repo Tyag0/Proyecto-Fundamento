@@ -40,7 +40,7 @@ class jugador():
         #------------------------------------------------------
         for i in range(1,5):
             if not Win:
-                for j in range(1,5):
+                for j in range(1,4):
                     if table[index][i] != table[index][i+j] and table[index][i] != '.':
                         Win = False
                         break
