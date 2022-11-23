@@ -17,7 +17,7 @@ class jugador():
             row = input(f"{self.nombre}, indica un número de columna o pulsa [S] para tentar a la suerte: ")
             if row=="S" or row=='s':
                 row = randint(1,7)
-                self.puntos +=10
+                self.puntos +=100
                 print(f"mmm...suerte con eso, se eligió aleatoriamente la columna {row} para tu ficha")
             else:
                 row = int(row)
@@ -87,20 +87,23 @@ def tablero():
 
 #Guarda e imprime puntajes
 def save_show(name, points):
-    fecha  =datetime.now()
+    fecha =datetime.now()
+    fecha = datetime.strftime(fecha, '%Y-%m-%d a las %H:%M')
     tabla = []
     with open('puntajes.txt', 'r') as f:
         tabla = list(f)
-        tabla.append(str(points)+"\t"+str(name)+'\t'+str(fecha)+"\n")
+        tabla.append(str(points)+"\t"+str(name)+'\t'+fecha+"\n")
         tabla.sort(reverse=True)
-    print(4*'*'+'Top 5'+4*'*')
-    print('Puntos\tNombre\tFecha')
+    print(3*'*'+' TABLA DE POSICIONES '+3*'*', end = '\n\n')
     if len(tabla)>=5:
         l = 5
     else:
         l = len(tabla)
     for i in range(l):
-        print(tabla[i])
+        show = []
+        show = tabla[i].split("\t")
+        print(str(i+1)+". "+ show[1]+' '+ show[0] +' puntos acumulados. Última partida en '+ show[2], end='')
+    print()
     with open('puntajes.txt', 'w') as f:
         for i in tabla:
             f.write(i)
@@ -177,6 +180,7 @@ while play:
     print(f'{i.nombre} ha ganado la partida!!')
     puntos_turno = (21-cont)*100
     i.puntos += (puntos_turno+300) 
+    print(f'Has sumado {i.puntos} en esta partida', end='\n\n')
     save_show(i.nombre, i.puntos)
 
         #Pregunta para volver a jugar
