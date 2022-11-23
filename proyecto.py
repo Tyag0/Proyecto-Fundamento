@@ -4,9 +4,10 @@ from datetime import datetime
 
 #Se define las características de los jugadores
 class jugador():
-    def __init__(self, nombre, ficha):
+    def __init__(self, nombre, ficha, puntos=0):
         self.nombre = nombre
         self.ficha = ficha
+        self.puntos = puntos
 
     def turno(self):
         global table
@@ -16,6 +17,7 @@ class jugador():
             row = input(f"{self.nombre}, indica un número de columna o pulsa [S] para tentar a la suerte: ")
             if row=="S" or row=='s':
                 row = randint(1,7)
+                self.puntos +=10
                 print(f"mmm...suerte con eso, se eligió aleatoriamente la columna {row} para tu ficha")
             else:
                 row = int(row)
@@ -132,7 +134,11 @@ while play:
         ["|",".",".",".",".",".",".",".","|"],
         ["|",".",".",".",".",".",".",".","|"],
         ["+","-","-","-","-","-","-","-","+"]]
-        
+                   
+        #Se reinicia puntos
+    for i in jugadores:
+        i.puntos = 0
+
         #SELECCION DE QUIEN EMPIEZA
     print("")
     inicia = randint(0,1)
@@ -142,7 +148,7 @@ while play:
         print(f"La partida la inicia {jugador1.nombre}")
     else:
         print(f"La partida la inicia {jugador2.nombre}")
-        
+
         #TABLERO INICIAL 
     Win = False
     time.sleep(2)
@@ -156,7 +162,9 @@ while play:
         jugador2.turno()
 
         #Ciclo para los turnos
+    cont = 1
     while not Win:
+        cont +=1
         for i in jugadores:
             i.turno()
             if Win:
@@ -164,10 +172,14 @@ while play:
             if table[2].count(".") == 0:
                 Win = True
                 break
-        #Pregunta para volver a jugar
-    print(f'{i.nombre} ha ganado la partida!!')
-    save_show(i.nombre,30)
 
+        #Puntos y tabla
+    print(f'{i.nombre} ha ganado la partida!!')
+    puntos_turno = (21-cont)*100
+    i.puntos += (puntos_turno+300) 
+    save_show(i.nombre, i.puntos)
+
+        #Pregunta para volver a jugar
     continua = input("¿Desean volver a jugar? [Si] / [No]:")
     if continua == "No" or continua == "no":
         print("¡Gracias por jugar!")
