@@ -1,5 +1,6 @@
 import time
 from random import randint
+from datetime import datetime
 
 #Se define las características de los jugadores
 class jugador():
@@ -82,6 +83,26 @@ def tablero():
             else:
                 print(table[i][j], end="")
 
+#Guarda e imprime puntajes
+def save_show(name, points):
+    fecha  =datetime.now()
+    tabla = []
+    with open('puntajes.txt', 'r') as f:
+        tabla = list(f)
+        tabla.append(str(points)+"\t"+str(name)+'\t'+str(fecha)+"\n")
+        tabla.sort(reverse=True)
+    print(4*'*'+'Top 5'+4*'*')
+    print('Puntos\tNombre\tFecha')
+    if len(tabla)>=5:
+        l = 5
+    else:
+        l = len(tabla)
+    for i in range(l):
+        print(tabla[i])
+    with open('puntajes.txt', 'w') as f:
+        for i in tabla:
+            f.write(i)
+
 #INICIO DE PARTIDA#
 print(4*"*","CUATRO SEGUIDAS",4*"*")
 for i in range(1,3):
@@ -145,6 +166,8 @@ while play:
                 break
         #Pregunta para volver a jugar
     print(f'{i.nombre} ha ganado la partida!!')
+    save_show(i.nombre,30)
+
     continua = input("¿Desean volver a jugar? [Si] / [No]:")
     if continua == "No" or continua == "no":
         print("¡Gracias por jugar!")
